@@ -54,13 +54,12 @@ export default [
   },
   // watch version
   {
+    watch: {
+      buildDelay: 150,
+    },
     input: Object.fromEntries(
       globSync('src/**/*.ts', {
-        ignore: [
-          'src/**/*.test.ts',
-          'src/**/*.stories.ts',
-          'src/**/*.styles.ts',
-        ],
+        ignore: ['src/**/*.test.ts', 'src/**/*.stories.ts'],
       }).map(file => [
         // This remove `src/` as well as the file extension from each
         // file, so e.g. src/nested/foo.js becomes nested/foo
@@ -119,6 +118,9 @@ export default [
   },
   // watch version
   {
+    watch: {
+      buildDelay: 150,
+    },
     input: globSync('src/**/index.ts'),
     output: {
       format: 'esm',
@@ -171,6 +173,9 @@ export default [
   },
   // watch version
   {
+    watch: {
+      buildDelay: 150,
+    },
     input: 'react/index.js',
     output: {
       format: 'esm',
@@ -178,9 +183,7 @@ export default [
       sourcemap: false,
     },
     external: ['react'],
-    plugins: [
-      resolve(),
-    ],
+    plugins: [resolve()],
     onwarn(warning) {
       if (
         /Could not resolve import/.test(warning.message) ||
@@ -202,6 +205,9 @@ export default [
   },
   // watch version
   {
+    watch: {
+      buildDelay: 150,
+    },
     input: './react/index.d.ts',
     output: [{ file: 'public/react/index.d.ts', format: 'es' }],
     external: ['react'],
