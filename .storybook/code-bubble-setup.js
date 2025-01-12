@@ -25,7 +25,7 @@ import packageJson from '../package.json';
           ({
             html: 'HTML',
             tsx: 'React',
-          })[framework],
+          })[framework] || framework,
       },
     },
     sandboxConfig: {
