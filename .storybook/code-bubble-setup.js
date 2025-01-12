@@ -1,6 +1,8 @@
 import { CodeBubble } from 'code-bubble';
 import packageJson from '../package.json';
 
+// This script sets up the CodeBubble configuration for live code examples in Storybook. It fetches the necessary library data and configures the sandbox environment for both HTML and React examples.
+// https://www.npmjs.com/package/code-bubble
 (async () => {
   async function fetchLibData(url) {
     const baseUrl = window.location.href.includes('localhost')
