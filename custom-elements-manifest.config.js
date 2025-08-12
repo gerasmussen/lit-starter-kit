@@ -1,16 +1,14 @@
 import { getTsProgram, expandTypesPlugin } from 'cem-plugin-expanded-types';
 import { customElementReactWrapperPlugin } from 'custom-element-react-wrappers';
-import { customElementVsCodePlugin } from 'custom-element-vs-code-integration';
 import { customElementJetBrainsPlugin } from 'custom-element-jet-brains-integration';
 import { customElementSolidJsPlugin } from 'custom-element-solidjs-integration';
 import { customElementJsxPlugin } from 'custom-element-jsx-integration';
 import { customElementVuejsPlugin } from 'custom-element-vuejs-integration';
 import { customElementSveltePlugin } from 'custom-element-svelte-integration';
-import { cemInheritancePlugin } from 'custom-elements-manifest-inheritance';
+import { cemInheritancePlugin } from '@wc-toolkit/cem-inheritance';
 import { customElementLazyLoaderPlugin } from 'custom-element-lazy-loader';
 import { customJSDocTagsPlugin } from 'cem-plugin-custom-jsdoc-tags';
-import { customEsLintRuleGeneratorPlugin } from 'custom-element-eslint-rule-generator';
-import { cemDeprecatorPlugin } from "custom-elements-manifest-deprecator";
+import { cemDeprecatorPlugin } from 'custom-elements-manifest-deprecator';
 
 export default {
   /** Globs to analyze */
@@ -25,7 +23,6 @@ export default {
     cemInheritancePlugin(),
     cemDeprecatorPlugin(),
 
-    customElementVsCodePlugin(),
     customElementJetBrainsPlugin(),
     customElementReactWrapperPlugin({
       outdir: 'react',
@@ -65,15 +62,8 @@ export default {
       tags: {
         status: {},
         since: {},
-        dependency: {
-          mappedName: 'dependencies',
-          isArray: true,
-        },
+        dependency: { mappedName: 'dependencies', isArray: true },
       },
-    }),
-
-    customEsLintRuleGeneratorPlugin({
-      outdir: 'eslint',
     }),
   ],
 
