@@ -5,6 +5,7 @@
     "esbenp.prettier-vscode",
     "streetsidesoftware.code-spell-checker",
     "unifiedjs.vscode-mdx",
+    "wc-toolkit.web-components-language-server",
     "yzhang.markdown-all-in-one"
   ]
 }
