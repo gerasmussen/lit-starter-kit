@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        Hello World
+    </h1>
+    <style>
+        button{
+            background-color: pink;
+        }
+        my-button{
+            --my-button-padding: 20px;
+        }
+        my-button::part(button){
+            border-radius: 5000px;
+        }
+    </style>
+    <button>
+        Regular Button
+    </button>
+    <my-button text="Some text"> </my-button>
+    <my-button text="Some text 2"> </my-button>
+    <script>
+        class MyButton extends HTMLElement {
+            static observedAttributes = ['text', 'disabled'];
+
+            #shadowRoot
+            #text = 'My Button';
+            #disabled;
+
+            get text() {
+                return this.#text;
+            }
+            set text(value) {
+                this.#text = value;
+                this.#render();
+            }
+
+            get disabled() {
+                return this.#disabled;
+            }
+            set disabled(value) {
+                this.#disabled = value;
+                this.#render();
+            }
+
+            constructor() {
+                super();
+                this.#shadowRoot = this.attachShadow({ mode: 'open' });
+            }
+            
+            connectedCallback() {
+                this.render();
+            }
+
+            attributeChangedCallback(name, oldValue, newValue) {
+                if (name === 'text') {
+                    this.text = newValue;
+                } else if (name === 'disabled'){
+                    this.disabled = newValue !== null;
+                }
+                this.#render();
+            }
+
+            #render(){
+                this.#shadowRoot.innerHTML = `
+                <style>
+                    :host {
+                        --my-button-padding: 8px;
+                    }
+                    button {
+                        background-color: #c0ffee;
+                        padding: var(--my-button-padding);
+                    }
+                </style>
+                <button part="button" ${this.disabled ? disabled : ''}>${this.text}</button>`;
+            }
+
+            log() {
+                console.log('logged');
+            }
+        }
+        customElements.define('my-button', MyButton);
+    </script>
+</body>
+</html>
